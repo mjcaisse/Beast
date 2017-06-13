@@ -45,6 +45,11 @@ unit-test core-tests :
     core/sha1.cpp
     ;
 
+exe examples :
+    examples/main.cpp
+    examples/async_server.cpp
+    ;
+
 unit-test http-tests :
     ../extras/beast/unit_test/main.cpp
     http/basic_parser.cpp

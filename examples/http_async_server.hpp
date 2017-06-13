@@ -241,9 +241,9 @@ private:
                 res.insert(field::content_type, "text/html");
                 res.body = "The file '" + path + "' was not found";
                 res.prepare();
-                async_write(sock_, std::move(res),
+                async_write(sock_, std::move(res), strand_.wrap(
                     std::bind(&peer::on_write, shared_from_this(),
-                        std::placeholders::_1));
+                        std::placeholders::_1)));
                 return;
             }
             try
@@ -255,9 +255,9 @@ private:
                 res.insert(field::content_type, mime_type(path));
                 res.body = path;
                 res.prepare();
-                async_write(sock_, std::move(res),
+                async_write(sock_, std::move(res), strand_.wrap(
                     std::bind(&peer::on_write, shared_from_this(),
-                        std::placeholders::_1));
+                        std::placeholders::_1)));
             }
             catch(std::exception const& e)
             {
@@ -269,9 +269,9 @@ private:
                 res.body =
                     std::string{"An internal error occurred"} + e.what();
                 res.prepare();
-                async_write(sock_, std::move(res),
+                async_write(sock_, std::move(res), strand_.wrap(
                     std::bind(&peer::on_write, shared_from_this(),
-                        std::placeholders::_1));
+                        std::placeholders::_1)));
             }
         }
 

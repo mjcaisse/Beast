@@ -188,6 +188,13 @@ file(GLOB_RECURSE EXTRAS_INCLUDES
     ${PROJECT_SOURCE_DIR}/extras/beast/*.ipp
 )
 
+add_subdirectory (test)
+add_subdirectory (test/core)
+add_subdirectory (test/examples)
+add_subdirectory (test/http)
+add_subdirectory (test/websocket)
+add_subdirectory (test/zlib)
+
 add_subdirectory (examples)
 if (NOT OPENSSL_FOUND)
     message("OpenSSL not found. Not building SSL tests and examples")
@@ -195,9 +202,3 @@ else()
     add_subdirectory (examples/ssl)
     add_subdirectory (test/websocket/ssl)
 endif()
-
-add_subdirectory (test)
-add_subdirectory (test/core)
-add_subdirectory (test/http)
-add_subdirectory (test/websocket)
-add_subdirectory (test/zlib)

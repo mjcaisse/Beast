@@ -61,15 +61,15 @@ int main()
     pmd.server_enable = true;
     pmd.compLevel = 3;
 
-    websocket::async_echo_server s1{&std::cout, 1};
+    websocket_echo_async_server s1{std::cout, 1};
     s1.on_new_stream(set_stream_options{pmd});
     s1.open(endpoint_type{
-        address_type::from_string("127.0.0.1"), 6000 }, ec);
+        address_type::from_string("127.0.0.1"), 1000 }, ec);
 
-    websocket::sync_echo_server s2{&std::cout};
+    websocket_sync_echo_server s2{std::cout};
     s2.on_new_stream(set_stream_options{pmd});
     s2.open(endpoint_type{
-        address_type::from_string("127.0.0.1"), 6001 }, ec);
+        address_type::from_string("127.0.0.1"), 1001 }, ec);
 
     sig_wait();
 }

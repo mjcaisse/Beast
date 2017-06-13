@@ -62,6 +62,7 @@ endif()
 
 add_executable (websocket-echo
     ${BEAST_INCLUDES}
+    server.hpp
     websocket_async_echo_server.hpp
     websocket_sync_echo_server.hpp
     websocket_echo.cpp
